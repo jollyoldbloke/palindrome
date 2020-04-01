@@ -9,14 +9,14 @@ String.prototype.reverse = function reverse() {
 function Phrase(content) {
   this.content = content;
 
-  // Processes the content for palindrome testing.
-  this.process = function(string) {
-    return string.toLowerCase();
-  }
-
   // Returns content processed for palindrome testing.
   this.processedContent = function() {
-    return this.process(this.content);
+    return this.letters().toLowerCase();
+  }
+
+  // Returns the letters inthe content.
+  this.letters = function() {
+    return (this.content.match(/[a-z]/gi) || []).join("");
   }
 
   // Returns true for a palindrome, false otherwise
@@ -29,16 +29,3 @@ function Phrase(content) {
     return content.toUpperCase();
   }
 }
-
-// Defines a TranslatedPhrase object.
-function TranslatedPhrase(content, translation) {
-  this.content = content;
-  this.translation = translation;
-
-  // Returns content processed for palindrome testing.
-  this.processedContent = function() {
-    return this.process(this.translation);
-  }
-}
-
-TranslatedPhrase.prototype = new Phrase();
